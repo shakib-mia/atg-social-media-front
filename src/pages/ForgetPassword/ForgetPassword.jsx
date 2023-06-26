@@ -1,19 +1,20 @@
-import React from "react";
+import React, { useState } from "react";
 import InputField from "../../components/InputField/InputField";
 import Submit from "../Submit/Submit";
 import { Link } from "react-router-dom";
 import axios from "axios";
 
 const ForgetPassword = () => {
+  const [disabled, setDisabled] = useState(true);
   const handleSubmit = (e) => {
     e.preventDefault();
+    setDisabled(true);
     const body = {
       email: e.target.email.value,
     };
     axios
       .post("https://atg-social-media-backend.vercel.app/reset-password", body)
       .then(({ data }) => {
-        console.log(data);
         if (data) {
         }
       });
@@ -41,10 +42,11 @@ const ForgetPassword = () => {
             name="email"
             id="email"
             placeholder="Email Address"
+            onChange={(e) => setDisabled(e.target.value.length === 0)}
             type="text"
             label="Email Address"
           />
-          <Submit value="Login" />
+          <Submit value="Send Reset Link" disabled={disabled} />
         </div>
       </form>
     </div>

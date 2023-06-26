@@ -73,7 +73,7 @@ const ResetPassword = () => {
             label="Reenter Password"
           />
 
-          <Submit value="Login" />
+          <Submit value="Reset" />
         </div>
       </form>
     </div>

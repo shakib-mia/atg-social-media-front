@@ -16,7 +16,6 @@ const Login = () => {
     axios
       .post("https://atg-social-media-backend.vercel.app/login", body)
       .then(({ data }) => {
-        //   console.log(data);
         if (data.token) {
           localStorage.setItem("token", data.token);
           // window.history.back();

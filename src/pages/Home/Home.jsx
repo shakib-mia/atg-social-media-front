@@ -14,7 +14,7 @@ const Home = () => {
     axios
       .get("https://atg-social-media-backend.vercel.app/posts")
       .then(({ data }) => setPosts(data.posts));
-  }, [posts]);
+  }, []);
 
   return (
     <>

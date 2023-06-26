@@ -16,14 +16,16 @@ function App() {
   const [user, setUser] = useState({});
 
   useEffect(() => {
-    const config = {
-      headers: {
-        token: localStorage.getItem("token"),
-      },
-    };
-    axios
-      .get("https://atg-social-media-backend.vercel.app/user", config)
-      .then((res) => setUser(res.data));
+    if (localStorage.getItem("token")) {
+      const config = {
+        headers: {
+          token: localStorage.getItem("token"),
+        },
+      };
+      axios
+        .get("https://atg-social-media-backend.vercel.app/user", config)
+        .then((res) => setUser(res.data));
+    }
   }, []);
 
   return (
