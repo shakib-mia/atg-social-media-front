@@ -14,21 +14,40 @@ const Post = ({ postBody, postedBy, likedBy, comments, _id }) => {
       .then((res) => console.log(res));
   };
 
-  const handleCommentSubmit = (e) => {
-    const token = localStorage.getItem("token");
-    const body = { _id, token, comment: e.target.comment.value };
+  const handleCommentSubmit = (e, username) => {
+    e.preventDefault();
+
+    const comment = [
+      ...comments,
+      { commentedBy: username, comment: e.target.comment.value },
+    ];
+    console.log(comments);
+
+    const body = {
+      _id,
+      commentedBy: username,
+      comment,
+    };
     axios
       .put("http://localhost:5000/comments", body)
       .then((res) => console.log(res));
+
+    e.target.reset();
   };
 
   return (
     <UserContext.Consumer>
       {({ username }) => (
         <div className="mt-4">
-          <p className="capitalize font-medium">
-            {postedBy.includes("-") ? postedBy.split("-").join(" ") : postedBy}
-          </p>
+          <div className="flex justify-between items-center">
+            <p className="capitalize font-medium">
+              {postedBy.includes("-")
+                ? postedBy.split("-").join(" ")
+                : postedBy}
+            </p>
+
+            <div className="text-3xl cursor-pointer select-none">...</div>
+          </div>
           <p>{postBody}</p>
 
           <div className="flex justify-between">
@@ -72,7 +91,10 @@ const Post = ({ postBody, postedBy, likedBy, comments, _id }) => {
                 </div>
               ))}
 
-              <form className="relative" onSubmit={handleCommentSubmit}>
+              <form
+                className="relative mt-3"
+                onSubmit={(e) => handleCommentSubmit(e, username)}
+              >
                 <textarea
                   name="comment"
                   id=""
