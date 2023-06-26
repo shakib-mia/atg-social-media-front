@@ -15,18 +15,20 @@ const Register = () => {
       password: e.target.password.value,
     };
 
-    axios.post("http://localhost:5000/register", body).then(({ data }) => {
-      //   console.log(data);
-      if (data.token) {
-        localStorage.setItem("token", data.token);
-        window.location.reload();
-        setError("");
-      }
+    axios
+      .post("https://atg-social-media-backend.vercel.app/register", body)
+      .then(({ data }) => {
+        //   console.log(data);
+        if (data.token) {
+          localStorage.setItem("token", data.token);
+          window.location.reload();
+          setError("");
+        }
 
-      if (data.type === "error") {
-        setError(data.message);
-      }
-    });
+        if (data.type === "error") {
+          setError(data.message);
+        }
+      });
   };
 
   return (

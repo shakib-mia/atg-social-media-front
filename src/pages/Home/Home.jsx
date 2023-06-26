@@ -8,9 +8,11 @@ import axios from "axios";
 const Home = () => {
   const [posts, setPosts] = useState([]);
 
+  const [postFieldFocused, setPostFieldFocused] = useState(false);
+
   useEffect(() => {
     axios
-      .get("http://localhost:5000/posts")
+      .get("https://atg-social-media-backend.vercel.app/posts")
       .then(({ data }) => setPosts(data.posts));
   }, [posts]);
 
@@ -19,7 +21,10 @@ const Home = () => {
       <Navbar />
 
       <div className="w-3/4 mx-auto">
-        <CreatePosts />
+        <CreatePosts
+          postFieldFocused={postFieldFocused}
+          setPostFieldFocused={setPostFieldFocused}
+        />
         {posts.length > 0
           ? posts.map((props, key) => <Post {...props} key={key} />)
           : "loading..."}

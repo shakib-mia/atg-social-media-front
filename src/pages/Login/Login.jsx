@@ -13,20 +13,22 @@ const Login = () => {
       username: e.target.username.value,
       password: e.target.password.value,
     };
-    axios.post("http://localhost:5000/login", body).then(({ data }) => {
-      //   console.log(data);
-      if (data.token) {
-        localStorage.setItem("token", data.token);
-        // window.history.back();
-        navigate("/");
-        window.location.reload();
-        setError("");
-      }
+    axios
+      .post("https://atg-social-media-backend.vercel.app/login", body)
+      .then(({ data }) => {
+        //   console.log(data);
+        if (data.token) {
+          localStorage.setItem("token", data.token);
+          // window.history.back();
+          navigate("/");
+          window.location.reload();
+          setError("");
+        }
 
-      if (data.message === "Wrong Credentials") {
-        setError(data.message);
-      }
-    });
+        if (data.message === "Wrong Credentials") {
+          setError(data.message);
+        }
+      });
   };
 
   return (

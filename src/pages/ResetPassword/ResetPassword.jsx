@@ -20,7 +20,10 @@ const ResetPassword = () => {
         };
 
         axios
-          .post("http://localhost:5000/confirm-reset-password", body)
+          .post(
+            "https://atg-social-media-backend.vercel.app/confirm-reset-password",
+            body
+          )
           .then((res) => {
             if (res.data.acknowledged) {
               if (res.data.modifiedCount) {

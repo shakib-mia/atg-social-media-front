@@ -21,10 +21,11 @@ const CreatePosts = () => {
     // console.log(body);
 
     axios
-      .post("http://localhost:5000/posts", body)
+      .post("https://atg-social-media-backend.vercel.app/posts", body)
       .then((res) => console.log(res));
 
     e.target.reset();
+    setPostFieldFocused(false);
   };
 
   return (

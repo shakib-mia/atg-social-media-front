@@ -11,7 +11,7 @@ const ForgetPassword = () => {
       email: e.target.email.value,
     };
     axios
-      .post("http://localhost:5000/reset-password", body)
+      .post("https://atg-social-media-backend.vercel.app/reset-password", body)
       .then(({ data }) => {
         console.log(data);
         if (data) {

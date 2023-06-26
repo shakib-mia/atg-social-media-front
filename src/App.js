@@ -22,7 +22,7 @@ function App() {
       },
     };
     axios
-      .get("http://localhost:5000/user", config)
+      .get("https://atg-social-media-backend.vercel.app/user", config)
       .then((res) => setUser(res.data));
   }, []);
 
