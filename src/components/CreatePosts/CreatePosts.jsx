@@ -32,11 +32,12 @@ const CreatePosts = () => {
     <UserContext.Consumer>
       {({ username }) => (
         <>
-          <InputField
-            name="post"
-            placeholder="What's on your mind"
-            onFocus={() => setPostFieldFocused(true)}
-          />
+          <div
+            className="w-full px-5 py-2 rounded focus:outline-none border border-[#E1E6EF] bg-[#F8F9FC] cursor-text"
+            onClick={() => setPostFieldFocused(true)}
+          >
+            <span className="opacity-60">What's on your mind</span>
+          </div>
 
           {postFieldFocused && (
             <div
